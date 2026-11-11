@@ -1,0 +1,1502 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Reporte de pruebas QA generado por ✨ OneClickTest." />
+    <meta name="generator" content="✨ OneClickTest" />
+    <meta name="color-scheme" content="light" />
+    <title>API Buggy Cars Rating · Reporte de Pruebas QA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --surface: #fff;
+        --surface-2: #f5f6fb;
+        --ink: #0b1020;
+        --ink-2: #3d4566;
+        --ink-3: #7a82a3;
+        --line: #e6e8f2;
+
+        --indigo: #6366f1;
+        --indigo-2: #818cf8;
+        --emerald: #10b981;
+        --rose: #f43f5e;
+        --amber: #f59e0b;
+        --sky: #0ea5e9;
+
+        --display: 'Outfit', system-ui, sans-serif;
+        --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+        --shadow-card: 0 1px 0 rgba(11, 16, 32, 0.04), 0 18px 40px -22px rgba(11, 16, 32, 0.18);
+
+        --brand-bg:
+          radial-gradient(800px 300px at 0% 0%, rgba(129, 140, 248, 0.35), rgba(129, 140, 248, 0) 60%),
+          radial-gradient(600px 300px at 100% 100%, rgba(244, 63, 94, 0.18), rgba(244, 63, 94, 0) 60%),
+          linear-gradient(135deg, #0b1020 0%, #1a1f3a 100%);
+        --brand-text-gradient: linear-gradient(120deg, #a5b4fc, #f9a8d4);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      body {
+        font-family: var(--display);
+        color: var(--ink);
+        line-height: 1.5;
+        padding: 48px 24px 56px;
+        background:
+          radial-gradient(1400px 700px at 50% -100px, rgba(99, 102, 241, 0.08), transparent 60%),
+          radial-gradient(900px 500px at 100% 100%, rgba(244, 63, 94, 0.05), transparent 60%), #eceff5;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .shell {
+        max-width: 1180px;
+        margin: 0 auto;
+        background: var(--surface);
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.6),
+          0 2px 0 rgba(11, 16, 32, 0.04),
+          0 30px 60px -30px rgba(11, 16, 32, 0.25),
+          0 80px 120px -40px rgba(11, 16, 32, 0.2);
+      }
+
+      /* ============ HERO ============ */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 36px 56px;
+        color: #fff;
+        background: var(--brand-bg);
+      }
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+        background-size: 22px 22px;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+      .hero-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+      .brand-logo {
+        height: 72px;
+        width: 205px;
+        display: block;
+        flex: 0 0 auto;
+      }
+      .hero-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        font-family: var(--mono);
+        font-size: 15px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        backdrop-filter: blur(10px);
+      }
+      .hero-pill-brand,
+      .footer .who strong {
+        background: var(--brand-text-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        font-weight: 700;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 36px;
+        align-items: end;
+      }
+      .hero h1 {
+        font-size: clamp(34px, 4.5vw, 52px);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        margin: 0;
+      }
+      .hero-meta {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin-top: 22px;
+      }
+      .hero-meta > div {
+        padding: 12px 14px;
+        font-size: 13px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+      }
+      .hero-meta dt {
+        display: block;
+        margin-bottom: 4px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+      .hero-meta dd {
+        margin: 0;
+        color: #fff;
+        overflow-wrap: anywhere;
+      }
+
+      /* ============ STATS CARD ============ */
+      .stats-card {
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        backdrop-filter: blur(12px);
+      }
+      .stats-card .ttl {
+        margin-bottom: 16px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+      .stats-pct {
+        font-weight: 700;
+        font-size: 68px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .stats-pct small {
+        margin-left: 5px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 26px;
+        font-weight: 500;
+      }
+      .stats-bar {
+        height: 7px;
+        margin: 18px 0;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .stats-bar > span {
+        display: block;
+        height: 100%;
+        /* Color dinámico según --tasa (0-100): hue 0=rojo · 60=ámbar · 120=verde. */
+        background: hsl(calc(var(--tasa, 100) * 1.2) 65% 45%);
+        transition: background 0.3s ease;
+      }
+      .stats-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .stats-legend b {
+        margin-right: 4px;
+        color: #fff;
+        font-family: var(--mono);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .stats-legend .fail b {
+        color: var(--rose);
+      }
+
+      /* ============ SECTIONS ============ */
+      .sec {
+        margin-top: 56px;
+        padding: 0 56px;
+      }
+      .sec:last-of-type {
+        margin-bottom: 56px;
+      }
+      .sec-head {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 26px;
+      }
+      .sec-head::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, var(--line) 0%, transparent 100%);
+      }
+      .sec-head h2 {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin: 0;
+      }
+      .sec-head .num {
+        padding: 8px 13px;
+        color: #fff;
+        font-family: var(--mono);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        background: linear-gradient(135deg, var(--indigo), var(--indigo-2));
+        border-radius: 10px;
+        box-shadow: 0 6px 14px -6px rgba(99, 102, 241, 0.55);
+      }
+
+      /* ============ BASE CARD (shared by verdict / defect / evidence) ============ */
+      .card {
+        position: relative;
+        margin-bottom: 22px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+      }
+      .card::before {
+        content: '';
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 5px;
+        background: linear-gradient(
+          180deg,
+          var(--accent, var(--indigo)),
+          color-mix(in srgb, var(--accent, var(--indigo)) 40%, transparent)
+        );
+      }
+
+      /* ============ VERDICT ============ */
+      .verdict {
+        --accent: var(--ink-3);
+        --accent-tint: rgba(0, 0, 0, 0.04);
+        padding: 32px 36px 34px 44px;
+        margin-bottom: 18px;
+        background:
+          radial-gradient(700px 240px at 100% 0%, var(--accent-tint), transparent 60%), var(--surface);
+        box-shadow:
+          0 1px 0 rgba(11, 16, 32, 0.04),
+          0 22px 50px -28px rgba(11, 16, 32, 0.22);
+      }
+      .verdict:last-child {
+        margin-bottom: 0;
+      }
+      .verdict::before {
+        width: 6px;
+      }
+      .verdict.aprobado {
+        --accent: var(--emerald);
+        --accent-tint: rgba(16, 185, 129, 0.08);
+        border-color: rgba(16, 185, 129, 0.32);
+      }
+      .verdict.no-aprobado {
+        --accent: var(--rose);
+        --accent-tint: rgba(244, 63, 94, 0.09);
+        border-color: rgba(244, 63, 94, 0.32);
+      }
+      .verdict.observado {
+        --accent: var(--amber);
+        --accent-tint: rgba(245, 158, 11, 0.1);
+        border-color: rgba(245, 158, 11, 0.32);
+      }
+      .verdict-stamp {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        padding: 7px 14px;
+        color: var(--accent);
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        background: color-mix(in srgb, var(--accent) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+        border-radius: 999px;
+      }
+      .verdict p {
+        max-width: 780px;
+        margin: 0;
+        color: var(--ink-2);
+        line-height: 1.65;
+      }
+      .verdict p strong {
+        color: var(--ink);
+      }
+
+      /* ============ DEFECT ============ */
+      .defect {
+        --accent: var(--indigo);
+        --accent-tint: rgba(99, 102, 241, 0.08);
+        --accent-tint-strong: rgba(99, 102, 241, 0.16);
+      }
+      .defect.sev-high {
+        --accent: var(--rose);
+        --accent-tint: rgba(244, 63, 94, 0.07);
+        --accent-tint-strong: rgba(244, 63, 94, 0.16);
+      }
+      .defect.sev-med {
+        --accent: var(--amber);
+        --accent-tint: rgba(245, 158, 11, 0.08);
+        --accent-tint-strong: rgba(245, 158, 11, 0.18);
+      }
+      .defect.sev-low {
+        --accent: var(--sky);
+        --accent-tint: rgba(14, 165, 233, 0.07);
+        --accent-tint-strong: rgba(14, 165, 233, 0.16);
+      }
+
+      .defect-head {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 18px 24px;
+        padding: 22px 26px 20px 30px;
+        background:
+          radial-gradient(600px 200px at 0% 0%, var(--accent-tint), transparent 70%),
+          linear-gradient(180deg, var(--surface-2), var(--surface));
+        border-bottom: 1px dashed color-mix(in srgb, var(--accent) 28%, var(--line));
+      }
+      .defect-head .id,
+      .evidence-head .id {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--accent);
+        font-family: var(--mono);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+      .defect-head .id {
+        grid-column: 1 / -1;
+        font-size: 15px;
+      }
+      .evidence-head .id {
+        margin-bottom: 8px;
+        font-size: 13px;
+      }
+      .defect-head .id::before,
+      .evidence-head .id::before {
+        content: '◆';
+        font-size: 12px;
+        opacity: 0.7;
+      }
+      .defect-head h3 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+
+      .sev {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        align-self: end;
+        padding: 7px 14px;
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        white-space: nowrap;
+        border-radius: 999px;
+      }
+      .sev-high {
+        color: #be123c;
+        background: rgba(244, 63, 94, 0.1);
+        border: 1px solid rgba(244, 63, 94, 0.28);
+      }
+      .sev-med {
+        color: #b45309;
+        background: rgba(245, 158, 11, 0.12);
+        border: 1px solid rgba(245, 158, 11, 0.32);
+      }
+      .sev-low {
+        color: #0369a1;
+        background: rgba(14, 165, 233, 0.1);
+        border: 1px solid rgba(14, 165, 233, 0.28);
+      }
+
+      .defect-body {
+        padding: 26px 30px 28px;
+      }
+      .defect-body p {
+        margin: 0 0 14px;
+        color: var(--ink-2);
+        line-height: 1.65;
+      }
+      .defect-body p strong {
+        color: var(--ink);
+      }
+      .defect-body code {
+        padding: 2px 7px;
+        font-family: var(--mono);
+        font-size: 0.88em;
+        color: var(--ink);
+        background: var(--accent-tint-strong);
+        border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+        border-radius: 5px;
+        overflow-wrap: anywhere;
+      }
+      .defect-body a {
+        color: var(--indigo);
+        text-decoration: none;
+        border-bottom: 1px dashed currentColor;
+      }
+      .defect-body a:hover {
+        color: var(--indigo-2);
+      }
+
+      .subttl {
+        position: relative;
+        margin: 30px 0 16px;
+        font-size: 16px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--ink);
+        line-height: 32px;
+      }
+      .subttl::after {
+        content: '';
+        display: inline-block;
+        width: 24px;
+        height: 1px;
+        margin-left: 12px;
+        vertical-align: middle;
+        background: color-mix(in srgb, var(--accent) 40%, transparent);
+      }
+      .defect-body > .subttl:first-child {
+        margin-top: 0;
+      }
+
+      /* COMPARE — expected vs found */
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin: 4px 0 22px;
+      }
+      .cmp {
+        position: relative;
+        padding: 18px 20px 20px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .cmp::before {
+        content: '';
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 3px;
+      }
+      .cmp.expected {
+        background: linear-gradient(180deg, #ecfdf5 0%, #fff 90%);
+        border-color: rgba(16, 185, 129, 0.28);
+      }
+      .cmp.expected::before {
+        background: linear-gradient(90deg, #10b981, #34d399);
+      }
+      .cmp.found {
+        background: linear-gradient(180deg, #fff1f2 0%, #fff 90%);
+        border-color: rgba(244, 63, 94, 0.28);
+      }
+      .cmp.found::before {
+        background: linear-gradient(90deg, #f43f5e, #fb7185);
+      }
+      .cmp .h {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        padding: 5px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        border-radius: 999px;
+      }
+      .cmp.expected .h {
+        color: #047857;
+        background: rgba(16, 185, 129, 0.1);
+      }
+      .cmp.found .h {
+        color: #be123c;
+        background: rgba(244, 63, 94, 0.1);
+      }
+      .cmp p {
+        margin: 0;
+        color: var(--ink-2);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      /* STEPS */
+      .steps {
+        display: grid;
+        gap: 10px;
+        margin: 4px 0 22px 60px;
+        padding: 0;
+        color: var(--ink-2);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .steps li {
+        padding-left: 6px;
+      }
+      .steps li::marker {
+        color: var(--accent);
+        font-family: var(--mono);
+        font-weight: 700;
+      }
+
+      /* ============ EVIDENCE ============ */
+      .evidence {
+        --accent: var(--indigo);
+        --accent-tint: rgba(99, 102, 241, 0.08);
+      }
+      .evidence-head {
+        padding: 22px 26px 20px 30px;
+        background:
+          radial-gradient(600px 200px at 0% 0%, var(--accent-tint), transparent 70%),
+          linear-gradient(180deg, var(--surface-2), var(--surface));
+        border-bottom: 1px dashed color-mix(in srgb, var(--accent) 28%, var(--line));
+      }
+      .evidence-head h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.35;
+        color: var(--ink);
+      }
+      .evidence-body {
+        padding: 24px 32px 28px;
+      }
+      .evidence-body img,
+      .defect-body .evidence-body img {
+        max-height: 720px;
+        object-fit: contain;
+        margin-inline: auto;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+      }
+
+      /* ============ TABLE ============ */
+      .table-wrap {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+      }
+      table.cases {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      table.cases th {
+        padding: 16px 22px;
+        text-align: left;
+        color: var(--ink-3);
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        background: linear-gradient(180deg, var(--surface-2), var(--surface));
+        border-bottom: 1px solid var(--line);
+      }
+      table.cases td {
+        position: relative;
+        padding: 16px 22px;
+        color: var(--ink-2);
+        vertical-align: middle;
+        border-bottom: 1px dashed var(--line);
+      }
+      table.cases tr:last-child td {
+        border-bottom: none;
+      }
+      table.cases tbody tr:hover td {
+        background: var(--surface-2);
+      }
+      table.cases tbody tr:has(.pill.fail) td:first-child::before,
+      table.cases tbody tr:has(.pill.warn) td:first-child::before {
+        content: '';
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 3px;
+        background: var(--rose);
+      }
+      table.cases tbody tr:has(.pill.warn) td:first-child::before {
+        background: var(--amber);
+      }
+      table.cases code {
+        padding: 3px 8px;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--ink);
+        background: var(--surface-2);
+        border-radius: 6px;
+        word-break: break-all;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 5px 12px;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        border: 1px solid transparent;
+        border-radius: 999px;
+      }
+      .pill.ok {
+        color: #047857;
+        background: rgba(16, 185, 129, 0.1);
+        border-color: rgba(16, 185, 129, 0.25);
+      }
+      .pill.fail {
+        color: #be123c;
+        background: rgba(244, 63, 94, 0.1);
+        border-color: rgba(244, 63, 94, 0.28);
+      }
+      .pill.warn {
+        color: #b45309;
+        background: rgba(245, 158, 11, 0.14);
+        border-color: rgba(245, 158, 11, 0.32);
+      }
+
+      /* ============ CALLOUTS ============ */
+      .callout {
+        --accent: var(--indigo);
+        --accent-tint: rgba(99, 102, 241, 0.07);
+        position: relative;
+        padding: 32px 36px 34px 44px;
+        margin-bottom: 18px;
+        background:
+          radial-gradient(700px 240px at 100% 0%, var(--accent-tint), transparent 60%), var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow:
+          0 1px 0 rgba(11, 16, 32, 0.04),
+          0 22px 50px -28px rgba(11, 16, 32, 0.22);
+      }
+      .callout::before {
+        content: '';
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 6px;
+        background: linear-gradient(
+          180deg,
+          var(--accent),
+          color-mix(in srgb, var(--accent) 40%, transparent)
+        );
+      }
+      .callout.info {
+        --accent: var(--sky);
+        --accent-tint: rgba(14, 165, 233, 0.08);
+        border-color: rgba(14, 165, 233, 0.32);
+      }
+      .callout.warn {
+        --accent: var(--amber);
+        --accent-tint: rgba(245, 158, 11, 0.1);
+        border-color: rgba(245, 158, 11, 0.32);
+      }
+      .callout h3 {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 14px;
+        padding: 6px 12px 6px 8px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        background: color-mix(in srgb, var(--accent) 10%, transparent);
+        border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+        border-radius: 999px;
+      }
+      .callout ul,
+      .callout ol {
+        margin: 0 0 0 20px;
+        padding: 0;
+        list-style: none;
+      }
+      .callout li {
+        position: relative;
+        margin: 10px 0;
+        padding-left: 20px;
+        color: var(--ink-2);
+        line-height: 1.55;
+      }
+      .callout li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.65em;
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 2px;
+        opacity: 0.7;
+        transform: rotate(45deg);
+      }
+      .callout li strong {
+        color: var(--ink);
+      }
+
+      /* ============ FOOTER ============ */
+      .footer {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 24px;
+        align-items: center;
+        padding: 28px 56px;
+        color: #fff;
+        background: var(--brand-bg);
+      }
+
+      .footer .who {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .footer .who:last-child {
+        text-align: right;
+      }
+      .footer .who strong {
+        color: #fff;
+      }
+
+      /* ============ RESPONSIVE ============ */
+      @media (max-width: 880px) {
+        .hero {
+          padding: 28px 24px;
+        }
+        .hero-grid,
+        .hero-meta,
+        .compare,
+        .footer {
+          grid-template-columns: 1fr;
+        }
+        .footer {
+          padding: 24px 20px;
+          text-align: center;
+        }
+        .footer .who:last-child {
+          text-align: center;
+        }
+        .shell {
+          border-radius: 18px;
+        }
+        .sec {
+          padding: 0 20px;
+        }
+        .steps {
+          margin-left: 24px;
+        }
+      }
+
+      /* ============ PRINT ============ */
+      @page {
+        margin: 0;
+      }
+      @media print {
+        body {
+          padding: 0;
+          background: #fff;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .shell {
+          max-width: 100%;
+          border-radius: 0;
+          box-shadow: none;
+        }
+        .verdict,
+        .footer,
+        .defect-head,
+        .evidence-head,
+        .callout h3,
+        .table-wrap thead {
+          box-shadow: none;
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        /* Mantener encabezados pegados a su contenido (evita huérfanos al pie de página). */
+        .sec-head,
+        .defect-head,
+        .evidence-head,
+        .callout h3 {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+        /* Evitar que una fila de la tabla se corte a la mitad entre páginas. */
+        table.cases tbody tr {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        .card,
+        .callout {
+          box-shadow: none;
+        }
+        .defect-body img,
+        .evidence-body img {
+          max-height: 90vh;
+          object-fit: contain;
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        .sec {
+          margin-top: 28px;
+        }
+        /* backdrop-filter no se aplica al imprimir en Chromium: usamos fondo
+           sólido y subimos el contraste del texto translúcido. */
+        .stats-card {
+          background: rgba(11, 16, 32, 0.35);
+          border-color: rgba(255, 255, 255, 0.22);
+          backdrop-filter: none;
+        }
+        .stats-card .ttl,
+        .stats-legend,
+        .stats-pct small,
+        .hero-meta dt,
+        .footer .who {
+          color: rgba(255, 255, 255, 0.9);
+        }
+        .stats-bar {
+          background: rgba(255, 255, 255, 0.22);
+        }
+        .hero-pill {
+          background: rgba(255, 255, 255, 0.12);
+          border-color: rgba(255, 255, 255, 0.28);
+          backdrop-filter: none;
+        }
+        /* background-clip: text + color: transparent no se renderiza en PDF.
+           Usamos un color sólido equivalente al promedio del gradiente. */
+        .hero-pill-brand,
+        .footer .who strong {
+          background: none;
+          -webkit-text-fill-color: #c7b8fb;
+          color: #c7b8fb;
+        }
+      }
+    
+      /* ============ CHARTS (agregado) ============ */
+      .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 22px; }
+      .kpis.small { grid-template-columns: repeat(3, 1fr); }
+      .kpi { padding: 16px 18px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 16px; }
+      .kpi b { display: block; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+      .kpi span { color: var(--ink-3); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
+      .kpi.ok b { color: var(--emerald); } .kpi.fail b { color: var(--rose); }
+      .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 22px; }
+      .chart-card { margin: 0 0 22px; padding: 22px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow-card); }
+      .charts .chart-card { margin-bottom: 0; }
+      .chart-card figcaption { margin-bottom: 14px; font-weight: 600; color: var(--ink-2); }
+      .donut-wrap { display: flex; align-items: center; gap: 24px; }
+      .legend { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+      .legend li { margin: 6px 0; } .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; }
+      .muted { color: var(--ink-3); }
+      .cases td code { white-space: nowrap; }
+      .callout.concl { border-color: rgba(16,185,129,.35); background: rgba(16,185,129,.06); margin-top: 18px; }
+      @media (max-width: 860px) { .kpis, .charts { grid-template-columns: 1fr 1fr; } }
+    </style>
+  </head>
+  <body>
+    
+
+    <!-- Logo SoftwareOne (inline SVG, definido una sola vez y reutilizado con <use>) -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <symbol id="logo-swo" viewBox="0 0 692.296 243.316">
+        <path
+          fill="#000"
+          d="M241.1015625,144.9140625c-10.9160156,57.1113281-61.2246094,98.4023438-119.4433594,98.4023438C54.5800781,243.3164062,0,188.7363281,0,121.6582031C0,54.421875,54.5800781,0,121.6582031,0c58.3769531,0,108.5273438,41.2910156,119.4433594,98.4023438V6.8027344h69.1347656v28.1601562C329.5371094,10.7578125,351.0522461,0,379.6870117,0c50.3085938,0,81.4746094,36.3867188,81.4746094,95.2382812v4.2714844C470.6538086,39.7089844,517.4819336,0,578.8647461,0c67.3945312,0,113.4316406,50.7832031,113.4316406,124.8222656v15.3457031H528.3979492c4.9042969,33.5390625,24.5214844,52.6816406,53.9472656,52.6816406c21.515625,0,37.0195312-9.9667969,41.765625-27.0527344h65.0214844c-9.1757812,46.5117188-52.2070312,77.5195312-107.7363281,77.5195312c-62.3320312,0-110.5839844-39.8671875-120.234375-99.3515625v92.5488281h-70.2421875V102.515625c0-28.7929688-14.2382812-44.7714844-39.7089844-44.7714844c-23.8881836,0-39.7084961,17.71875-39.7084961,44.7714844v133.9980469h-70.4003906V144.9140625z M623.6362305,95.8710938c-4.4296875-29.9003906-21.515625-47.3027344-46.1953125-47.3027344c-24.8378906,0-42.2402344,17.0859375-47.9355469,47.3027344H623.6362305z"
+        />
+        <path
+          fill="#fff"
+          d="M9.4393921,125.616333h8.7407227c0.5427246,2.9421387,2.2280273,4.2275391,5.6557617,4.2275391c2.8564453,0,4.7416992-1.4567871,4.7416992-3.6848145c0-1.6281738-1.2568359-2.6850586-3.7705078-3.1135254l-3.3991699-0.5712891c-7.7980957-1.3139648-11.1972656-4.1989746-11.1972656-9.5119629c0-5.6271973,5.484375-9.5976562,13.2539062-9.5976562c7.8266602,0,12.5112305,3.1706543,13.5681152,9.2263184h-8.6550293c-0.3999023-2.3708496-2.142334-3.65625-4.9702148-3.65625c-2.6564941,0-4.6274414,1.5424805-4.6274414,3.6276855c0,1.5424805,1.2282715,2.3994141,4.0847168,2.9135742l3.6848145,0.6569824c7.5410156,1.3425293,10.8544922,4.3417969,10.8544922,9.8261719c0,5.9128418-5.3986816,9.8833008-13.4538574,9.8833008C15.3236694,135.8424072,10.0392456,132.1290283,9.4393921,125.616333z M38.8607788,119.7034912c0-9.454834,6.8554688-16.3388672,16.3103027-16.3388672c9.3977051,0,16.0246582,6.6269531,16.0246582,16.0817871c0,9.5690918-6.7697754,16.3959961-16.2531738,16.3959961S38.8607788,129.2154541,38.8607788,119.7034912z M61.9408569,119.50354c0-5.6843262-2.6850586-9.2834473-6.9411621-9.2834473c-4.1989746,0-6.8840332,3.65625-6.8840332,9.3405762c0,5.8271484,2.6279297,9.4262695,6.8840332,9.4262695C59.2843628,128.9869385,61.9408569,125.3306885,61.9408569,119.50354z M70.710144,104.307251h5.0273438v-2.9707031c0-6.8554688,3.1420898-9.8833008,10.1975098-9.8833008c1.1711426,0,2.5993652,0.1142578,3.3991699,0.2570801v6.4841309c-0.5141602-0.0285645-0.5141602-0.0285645-1.1425781-0.0285645c-2.5708008,0-3.4277344,0.7426758-3.4277344,3.027832v3.1135254h8.9121094v-9.5690918h8.9978027v9.5690918h14.0537109l3.2563477,14.5678711c0.4570312,2.0852051,0.9140625,4.3132324,1.2854004,6.3984375c0.4570312-2.1708984,0.9997559-4.3417969,1.5424805-6.369873l3.7990723-14.3679199h7.3696289l3.8562012,14.3679199c0.4570312,1.7709961,0.9997559,4.0561523,1.4567871,5.9985352c0.5427246-2.9421387,0.8283691-4.3703613,1.199707-5.9985352l3.2563477-14.5964355h8.8835449l-8.6835938,30.5925293h-8.6550293l-5.170166-19.5952148l-5.0559082,19.5952148h-8.9121094l-6.7412109-24.1940918h-6.7412109v13.9394531c0,2.6279297,0.942627,3.5134277,3.6848145,3.5134277c0.7998047,0,1.2282715-0.0285645,2.0280762-0.1713867v6.6269531c-1.513916,0.2856445-3.2277832,0.4855957-4.598877,0.4855957c-7.2553711,0-10.1118164-2.6850586-10.1118164-9.5119629v-14.8820801H84.763855v24.1940918h-9.0263672v-24.1940918H70.710144V104.307251z M150.9476929,127.0159912c0-5.5415039,3.5991211-8.3408203,12.8254395-9.9118652c4.9702148-0.8283691,6.7697754-1.9709473,6.7697754-4.3132324s-1.7424316-3.7705078-4.6274414-3.7705078c-3.0563965,0-4.7988281,1.3996582-4.9987793,4.0561523h-8.3122559c0.6569824-6.2841797,5.3701172-9.7119141,13.3967285-9.7119141c8.8549805,0,13.2253418,4.2561035,13.2253418,12.9111328v12.1398926c0,3.7705078,0.1999512,4.855957,1.199707,6.4841309h-8.6835938c-0.4284668-1.0283203-0.7141113-2.1994629-0.8283691-3.7705078c-2.3708496,3.1135254-5.4272461,4.541748-9.6547852,4.541748C154.8610229,135.6710205,150.9476929,132.3861084,150.9476929,127.0159912z M165.4869995,121.7315674c-4.284668,0.8569336-5.8842773,2.0566406-5.8842773,4.4274902c0,2.3994141,1.5424805,3.7705078,4.284668,3.7705078c4.1418457,0,6.684082-2.6279297,6.684082-6.8269043v-2.8564453C169.2575073,120.8746338,168.1720581,121.1888428,165.4869995,121.7315674z M183.7111206,104.307251h8.9406738v4.6845703c1.9423828-3.5134277,4.4846191-5.1987305,7.9123535-5.1987305c0.3999023,0,1.2282715,0.0856934,1.9138184,0.2285156v7.4838867c-0.5712891-0.1428223-1.1711426-0.1999512-2.4279785-0.1999512c-4.3989258,0-7.2268066,2.8278809-7.2268066,7.2268066v16.3674316h-9.1120605V104.307251z M202.1923218,119.7034912c0-9.7404785,6.3984375-16.3388672,15.8532715-16.3388672c8.9978027,0,15.0534668,6.7412109,15.0534668,16.8244629v1.5710449h-21.8518066c0.5998535,5.0844727,3.2277832,7.9694824,7.2553711,7.9694824c3.027832,0,4.9987793-1.4282227,5.6557617-4.0275879h8.512207c-1.2282715,6.0842285-6.9411621,10.1403809-14.2822266,10.1403809C208.762146,135.8424072,202.1923218,129.3011475,202.1923218,119.7034912z M224.1298218,116.4185791c-0.5712891-4.6560059-2.7421875-7.1411133-6.2556152-7.1411133s-5.7128906,2.456543-6.4555664,7.1411133H224.1298218z"
+        />
+      </symbol>
+    </svg>
+
+    <div class="shell">
+      <!-- ==================== HERO ==================== -->
+      <header class="hero">
+        <div class="hero-top">
+          <svg class="brand-logo" viewBox="0 0 692.296 243.316" role="img" aria-label="SoftwareOne">
+            <use href="#logo-swo" />
+          </svg>
+          <div class="hero-pill">
+            <span aria-hidden="true">✨</span> <span class="hero-pill-brand">OneClickTest</span>
+          </div>
+        </div>
+        <div class="hero-grid">
+          <div>
+            <h1>Reporte de Pruebas QA</h1>
+            <dl class="hero-meta">
+              <div>
+                <dt>Alcance</dt>
+                <dd>API REST Buggy Cars Rating · 20 casos de regresión</dd>
+              </div>
+              <div>
+                <dt>Sprint</dt>
+                <dd>Release-01-BuggyCars · Sprint-01</dd>
+              </div>
+              <div>
+                <dt>Proyecto</dt>
+                <dd>Karate · API Buggy Cars (Karate 1.5.2)</dd>
+              </div>
+              <div>
+                <dt>Ambiente</dt>
+                <dd>buggy.justtestit.org · API k51qryqov3…/prod</dd>
+              </div>
+              <div>
+                <dt>Fecha de ejecución</dt>
+                <dd>11 Nov 2026 · 11:42</dd>
+              </div>
+              <div>
+                <dt>Analista de pruebas</dt>
+                <dd>Copilot (QA automatizado) · José Padilla</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Tasa de éxito: tasa = round(aprobados / totales * 100), entero ∈ [0,100].
+               IMPORTANTE: los TRES placeholders 95 DEBEN tener el mismo valor numérico
+               y el style del span de la barra DEBE incluir "--tasa: 95" para que el
+               color (rojo→ámbar→verde) refleje la tasa real.
+               Ejemplo si tasa=87: <span>87</span>, aria-valuenow="87",
+               style="width: 87%; --tasa: 87". -->
+          <div class="stats-card">
+            <div class="ttl">Tasa de éxito · Casos de prueba</div>
+            <div class="stats-pct"><span>95</span><small>%</small></div>
+            <div
+              class="stats-bar"
+              role="progressbar"
+              aria-valuenow="95"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label="Tasa de éxito de casos de prueba"
+            >
+              <span style="width: 95%; --tasa: 95"></span>
+            </div>
+            <div class="stats-legend">
+              <span><b>19</b> Aprobados</span>
+              <span class="fail"><b>1</b> Fallidos</span>
+              <span><b>20</b> Totales</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="sec" aria-labelledby="sec-veredicto">
+          <div class="sec-head">
+            <h2 id="sec-veredicto"><span class="num">01</span> Veredicto</h2>
+          </div>
+          <div class="card verdict observado">
+            <span class="verdict-stamp">Observado</span>
+            <h4 class="subttl">Motivo</h4>
+            <p>19 de 20 casos aprobados (95 %). La API cumple el contrato de consultas, autenticación y control de acceso,
+            pero el registro de usuarios no valida que la contraseña y su confirmación coincidan (<b>DEF-01</b>, severidad media).
+            Además, los endpoints de marcas y detalle de modelo responden en más de 5 s.</p>
+          </div>
+        </section>
+
+        <section class="sec" aria-labelledby="sec-graficas">
+          <div class="sec-head">
+            <h2 id="sec-graficas"><span class="num">02</span> Análisis gráfico de resultados</h2>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><b>20</b><span>Casos diseñados</span></div>
+            <div class="kpi"><b>23</b><span>Iteraciones ejecutadas</span></div>
+            <div class="kpi ok"><b>19</b><span>Casos aprobados</span></div>
+            <div class="kpi fail"><b>1</b><span>Casos fallidos</span></div>
+            <div class="kpi"><b>72 s</b><span>Tiempo acumulado (5 hilos)</span></div>
+          </div>
+          <div class="charts">
+            <figure class="chart-card">
+              <figcaption>Resultado global por caso</figcaption>
+              <div class="donut-wrap"><svg viewBox="0 0 200 200" width="220" height="220" role="img" aria-label="19 aprobados, 1 fallidos">
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#f43f5e" stroke-width="26"/>
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#10b981" stroke-width="26" stroke-dasharray="417.83 439.82" transform="rotate(-90 100 100)"/>
+  <text x="100" y="98" text-anchor="middle" font-size="34" font-weight="700" fill="#0b1020">95%</text>
+  <text x="100" y="122" text-anchor="middle" font-size="12" fill="#7a82a3">éxito</text>
+</svg>
+                <ul class="legend"><li><i style="background:#10b981"></i>Aprobados: 19</li><li><i style="background:#f43f5e"></i>Fallidos: 1</li></ul>
+              </div>
+            </figure>
+            <figure class="chart-card">
+              <figcaption>Resultados por módulo funcional</figcaption>
+              <svg viewBox="0 0 520 282" width="100%" role="img" aria-label="Casos por módulo">
+<text x="110" y="23" text-anchor="end" font-size="13" fill="#3d4566">Marcas</text>
+<rect x="120" y="6" width="360.0" height="22" rx="5" fill="#10b981"/>
+<text x="488.0" y="22" font-size="12" font-family="JetBrains Mono, monospace" fill="#0b1020">5/5</text>
+<text x="110" y="57" text-anchor="end" font-size="13" fill="#3d4566">Modelos</text>
+<rect x="120" y="40" width="144.0" height="22" rx="5" fill="#10b981"/>
+<text x="272.0" y="56" font-size="12" font-family="JetBrains Mono, monospace" fill="#0b1020">2/2</text>
+<text x="110" y="91" text-anchor="end" font-size="13" fill="#3d4566">Ranking</text>
+<rect x="120" y="74" width="144.0" height="22" rx="5" fill="#10b981"/>
+<text x="272.0" y="90" font-size="12" font-family="JetBrains Mono, monospace" fill="#0b1020">2/2</text>
+<text x="110" y="125" text-anchor="end" font-size="13" fill="#3d4566">Dashboard</text>
+<rect x="120" y="108" width="72.0" height="22" rx="5" fill="#10b981"/>
+<text x="200.0" y="124" font-size="12" font-family="JetBrains Mono, monospace" fill="#0b1020">1/1</text>
+<text x="110" y="159" text-anchor="end" font-size="13" fill="#3d4566">Autenticación</text>
+<rect x="120" y="142" width="360.0" height="22" rx="5" fill="#10b981"/>
+<text x="488.0" y="158" font-size="12" font-family="JetBrains Mono, monospace" fill="#0b1020">5/5</text>
+<text x="110" y="193" text-anchor="end" font-size="13" fill="#3d4566">Perfil</text>
+<rect x="120" y="176" width="72.0" height="22" rx="5" fill="#10b981"/>
+<text x="200.0" y="192" font-size="12" font-family="JetBrains Mono, monospace" fill="#0b1020">1/1</text>
+<text x="110" y="227" text-anchor="end" font-size="13" fill="#3d4566">Votos</text>
+<rect x="120" y="210" width="144.0" height="22" rx="5" fill="#10b981"/>
+<text x="272.0" y="226" font-size="12" font-family="JetBrains Mono, monospace" fill="#0b1020">2/2</text>
+<text x="110" y="261" text-anchor="end" font-size="13" fill="#3d4566">Registro</text>
+<rect x="120" y="244" width="72.0" height="22" rx="5" fill="#10b981"/>
+<rect x="192.0" y="244" width="72.0" height="22" rx="5" fill="#f43f5e"/>
+<text x="272.0" y="260" font-size="12" font-family="JetBrains Mono, monospace" fill="#0b1020">1/2</text>
+</svg>
+            </figure>
+          </div>
+          <figure class="chart-card wide">
+            <figcaption>Duración por caso de prueba (segundos) · verde &lt; 5 s · ámbar &gt; 5 s · rojo = fallido</figcaption>
+            <svg viewBox="0 0 820 280" width="100%" role="img">
+<line x1="46" x2="810" y1="226.0" y2="226.0" stroke="#e6e8f2"/>
+<text x="40" y="230.0" text-anchor="end" font-size="11" fill="#7a82a3">0s</text>
+<line x1="46" x2="810" y1="174.0" y2="174.0" stroke="#e6e8f2"/>
+<text x="40" y="178.0" text-anchor="end" font-size="11" fill="#7a82a3">3s</text>
+<line x1="46" x2="810" y1="122.0" y2="122.0" stroke="#e6e8f2"/>
+<text x="40" y="126.0" text-anchor="end" font-size="11" fill="#7a82a3">6s</text>
+<line x1="46" x2="810" y1="70.0" y2="70.0" stroke="#e6e8f2"/>
+<text x="40" y="74.0" text-anchor="end" font-size="11" fill="#7a82a3">9s</text>
+<line x1="46" x2="810" y1="18.0" y2="18.0" stroke="#e6e8f2"/>
+<text x="40" y="22.0" text-anchor="end" font-size="11" fill="#7a82a3">12s</text>
+<line x1="46" x2="810" y1="140.2" y2="140.2" stroke="#f59e0b" stroke-dasharray="6 4" stroke-width="2"/>
+<text x="808" y="134.2" text-anchor="end" font-size="11" fill="#f59e0b">umbral 5s</text>
+<rect x="52.9" y="45.1" width="24.4" height="180.9" rx="4" fill="#f59e0b"><title>CP-01: 10.5s</title></rect>
+<text x="65.1" y="41.1" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">10.5</text>
+<text x="65.1" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 65.1 242)">CP-01</text>
+<rect x="91.1" y="113.2" width="24.4" height="112.8" rx="4" fill="#f59e0b"><title>CP-02: 6.6s</title></rect>
+<text x="103.3" y="109.2" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">6.6</text>
+<text x="103.3" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 103.3 242)">CP-02</text>
+<rect x="129.3" y="132.2" width="24.4" height="93.8" rx="4" fill="#f59e0b"><title>CP-03: 5.5s</title></rect>
+<text x="141.5" y="128.2" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">5.5</text>
+<text x="141.5" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 141.5 242)">CP-03</text>
+<rect x="167.5" y="118.0" width="24.4" height="108.0" rx="4" fill="#f59e0b"><title>CP-04: 6.3s</title></rect>
+<text x="179.7" y="114.0" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">6.3</text>
+<text x="179.7" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 179.7 242)">CP-04</text>
+<rect x="205.7" y="133.3" width="24.4" height="92.7" rx="4" fill="#f59e0b"><title>CP-05: 5.4s</title></rect>
+<text x="217.9" y="129.3" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">5.4</text>
+<text x="217.9" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 217.9 242)">CP-05</text>
+<rect x="243.9" y="115.3" width="24.4" height="110.7" rx="4" fill="#f59e0b"><title>CP-06: 6.5s</title></rect>
+<text x="256.1" y="111.3" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">6.5</text>
+<text x="256.1" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 256.1 242)">CP-06</text>
+<rect x="282.1" y="212.6" width="24.4" height="13.4" rx="4" fill="#10b981"><title>CP-07: 0.8s</title></rect>
+<text x="294.3" y="208.6" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">0.8</text>
+<text x="294.3" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 294.3 242)">CP-07</text>
+<rect x="320.3" y="176.7" width="24.4" height="49.3" rx="4" fill="#10b981"><title>CP-08: 2.9s</title></rect>
+<text x="332.5" y="172.7" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">2.9</text>
+<text x="332.5" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 332.5 242)">CP-08</text>
+<rect x="358.5" y="183.4" width="24.4" height="42.6" rx="4" fill="#10b981"><title>CP-09: 2.5s</title></rect>
+<text x="370.7" y="179.4" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">2.5</text>
+<text x="370.7" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 370.7 242)">CP-09</text>
+<rect x="396.7" y="204.8" width="24.4" height="21.2" rx="4" fill="#10b981"><title>CP-10: 1.2s</title></rect>
+<text x="408.9" y="200.8" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">1.2</text>
+<text x="408.9" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 408.9 242)">CP-10</text>
+<rect x="434.9" y="177.6" width="24.4" height="48.4" rx="4" fill="#10b981"><title>CP-11: 2.8s</title></rect>
+<text x="447.1" y="173.6" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">2.8</text>
+<text x="447.1" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 447.1 242)">CP-11</text>
+<rect x="473.1" y="194.8" width="24.4" height="31.2" rx="4" fill="#10b981"><title>CP-12: 1.8s</title></rect>
+<text x="485.3" y="190.8" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">1.8</text>
+<text x="485.3" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 485.3 242)">CP-12</text>
+<rect x="511.3" y="188.5" width="24.4" height="37.5" rx="4" fill="#10b981"><title>CP-13: 2.2s</title></rect>
+<text x="523.5" y="184.5" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">2.2</text>
+<text x="523.5" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 523.5 242)">CP-13</text>
+<rect x="549.5" y="213.6" width="24.4" height="12.4" rx="4" fill="#10b981"><title>CP-14: 0.7s</title></rect>
+<text x="561.7" y="209.6" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">0.7</text>
+<text x="561.7" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 561.7 242)">CP-14</text>
+<rect x="587.7" y="205.9" width="24.4" height="20.1" rx="4" fill="#10b981"><title>CP-15: 1.2s</title></rect>
+<text x="599.9" y="201.9" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">1.2</text>
+<text x="599.9" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 599.9 242)">CP-15</text>
+<rect x="625.9" y="195.0" width="24.4" height="31.0" rx="4" fill="#10b981"><title>CP-16: 1.8s</title></rect>
+<text x="638.1" y="191.0" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">1.8</text>
+<text x="638.1" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 638.1 242)">CP-16</text>
+<rect x="664.1" y="112.7" width="24.4" height="113.3" rx="4" fill="#f59e0b"><title>CP-17: 6.6s</title></rect>
+<text x="676.3" y="108.7" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">6.6</text>
+<text x="676.3" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 676.3 242)">CP-17</text>
+<rect x="702.3" y="206.3" width="24.4" height="19.7" rx="4" fill="#10b981"><title>CP-18: 1.2s</title></rect>
+<text x="714.5" y="202.3" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">1.2</text>
+<text x="714.5" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 714.5 242)">CP-18</text>
+<rect x="740.5" y="164.1" width="24.4" height="61.9" rx="4" fill="#10b981"><title>CP-19: 3.6s</title></rect>
+<text x="752.7" y="160.1" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">3.6</text>
+<text x="752.7" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 752.7 242)">CP-19</text>
+<rect x="778.7" y="198.3" width="24.4" height="27.7" rx="4" fill="#f43f5e"><title>CP-20: 1.6s</title></rect>
+<text x="790.9" y="194.3" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">1.6</text>
+<text x="790.9" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 790.9 242)">CP-20</text>
+</svg>
+          </figure>
+          <figure class="chart-card wide">
+            <figcaption>Latencia promedio por endpoint (3 llamadas secuenciales, segundos)</figcaption>
+            <svg viewBox="0 0 820 280" width="100%" role="img">
+<line x1="46" x2="810" y1="226.0" y2="226.0" stroke="#e6e8f2"/>
+<text x="40" y="230.0" text-anchor="end" font-size="11" fill="#7a82a3">0s</text>
+<line x1="46" x2="810" y1="174.0" y2="174.0" stroke="#e6e8f2"/>
+<text x="40" y="178.0" text-anchor="end" font-size="11" fill="#7a82a3">2s</text>
+<line x1="46" x2="810" y1="122.0" y2="122.0" stroke="#e6e8f2"/>
+<text x="40" y="126.0" text-anchor="end" font-size="11" fill="#7a82a3">3s</text>
+<line x1="46" x2="810" y1="70.0" y2="70.0" stroke="#e6e8f2"/>
+<text x="40" y="74.0" text-anchor="end" font-size="11" fill="#7a82a3">5s</text>
+<line x1="46" x2="810" y1="18.0" y2="18.0" stroke="#e6e8f2"/>
+<text x="40" y="22.0" text-anchor="end" font-size="11" fill="#7a82a3">6s</text>
+<line x1="46" x2="810" y1="158.9" y2="158.9" stroke="#f59e0b" stroke-dasharray="6 4" stroke-width="2"/>
+<text x="808" y="152.9" text-anchor="end" font-size="11" fill="#f59e0b">umbral 2s</text>
+<rect x="73.5" y="45.1" width="97.8" height="180.9" rx="4" fill="#f43f5e"><title>GET /makes/{id}: 5.39s</title></rect>
+<text x="122.4" y="41.1" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">5.39</text>
+<text x="122.4" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 122.4 242)">GET /makes/{id}</text>
+<rect x="226.3" y="70.6" width="97.8" height="155.4" rx="4" fill="#f43f5e"><title>GET /models/{id}: 4.63s</title></rect>
+<text x="275.2" y="66.6" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">4.63</text>
+<text x="275.2" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 275.2 242)">GET /models/{id}</text>
+<rect x="379.1" y="114.3" width="97.8" height="111.7" rx="4" fill="#f59e0b"><title>GET /models (ranking): 3.33s</title></rect>
+<text x="428.0" y="110.3" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">3.33</text>
+<text x="428.0" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 428.0 242)">GET /models (ranking)</text>
+<rect x="531.9" y="184.7" width="97.8" height="41.3" rx="4" fill="#10b981"><title>GET /makes/inexistente: 1.23s</title></rect>
+<text x="580.8" y="180.7" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">1.23</text>
+<text x="580.8" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 580.8 242)">GET /makes/inexistente</text>
+<rect x="684.7" y="188.8" width="97.8" height="37.2" rx="4" fill="#10b981"><title>GET /dashboard: 1.11s</title></rect>
+<text x="733.6" y="184.8" text-anchor="middle" font-size="10" font-family="JetBrains Mono, monospace" fill="#0b1020">1.11</text>
+<text x="733.6" y="242" text-anchor="end" font-size="11" fill="#3d4566" transform="rotate(-40 733.6 242)">GET /dashboard</text>
+</svg>
+          </figure>
+          <div class="charts">
+            <figure class="chart-card">
+              <figcaption>Distribución por tipo de prueba</figcaption>
+              <div class="kpis small"><div class="kpi"><b>11</b><span>Positivo</span></div><div class="kpi"><b>1</b><span>Borde</span></div><div class="kpi"><b>8</b><span>Negativo</span></div></div>
+              <p class="muted">El 45 % de los casos son negativos o de borde, lo que da buena cobertura de validaciones y control de acceso.</p>
+            </figure>
+            <figure class="chart-card">
+              <figcaption>Cobertura de endpoints</figcaption>
+              <p class="muted" style="margin-top:0">8 endpoints REST cubiertos: <code>/makes/{id}</code>, <code>/models/{id}</code>, <code>/models</code>,
+              <code>/dashboard</code>, <code>/oauth/token</code>, <code>/users/current</code>, <code>/users/profile</code>, <code>/users</code> y
+              <code>/models/{id}/vote</code> (solo acceso no autenticado).</p>
+            </figure>
+          </div>
+        </section>
+
+        <section class="sec" aria-labelledby="sec-casos">
+          <div class="sec-head">
+            <h2 id="sec-casos"><span class="num">03</span> Resumen de Casos de prueba</h2>
+          </div>
+          <div class="table-wrap">
+            <table class="cases">
+              <colgroup>
+                <col style="width: 90px" />
+                <col />
+                <col style="width: 130px" />
+                <col style="width: 32%" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Caso de prueba</th>
+                  <th scope="col">Resultado</th>
+                  <th scope="col">Observaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>CP-01</code></td>
+                  <td>Consultar Lamborghini, página 1 de modelos (esquema completo)<br/><small class="muted">Marcas · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>PASS; duración &gt; 5 s</td>
+                </tr>
+                <tr>
+                  <td><code>CP-02</code></td>
+                  <td>Consultar Lamborghini, página 2 de modelos<br/><small class="muted">Marcas · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>PASS; duración &gt; 5 s</td>
+                </tr>
+                <tr>
+                  <td><code>CP-03</code></td>
+                  <td>Página de modelos fuera de rango devuelve lista vacía<br/><small class="muted">Marcas · Borde</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>PASS; duración &gt; 5 s</td>
+                </tr>
+                <tr>
+                  <td><code>CP-04</code></td>
+                  <td>Consultar marca Pagani solo devuelve sus modelos<br/><small class="muted">Marcas · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>PASS; duración &gt; 5 s</td>
+                </tr>
+                <tr>
+                  <td><code>CP-05</code></td>
+                  <td>Marca inexistente devuelve 404<br/><small class="muted">Marcas · Negativo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>PASS; duración &gt; 5 s</td>
+                </tr>
+                <tr>
+                  <td><code>CP-06</code></td>
+                  <td>Detalle del modelo Diablo sin autenticación (canVote=false)<br/><small class="muted">Modelos · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>PASS; duración &gt; 5 s</td>
+                </tr>
+                <tr>
+                  <td><code>CP-07</code></td>
+                  <td>Modelo inexistente devuelve 404<br/><small class="muted">Modelos · Negativo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-08</code></td>
+                  <td>Ranking ordenado por posición<br/><small class="muted">Ranking · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-09</code></td>
+                  <td>Ranking ordenado por marca<br/><small class="muted">Ranking · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-10</code></td>
+                  <td>Dashboard con marca y modelo más populares<br/><small class="muted">Dashboard · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-11</code></td>
+                  <td>Login con credenciales válidas devuelve token Bearer<br/><small class="muted">Autenticación · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-12</code></td>
+                  <td>Login con credenciales inválidas devuelve 401<br/><small class="muted">Autenticación · Negativo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-13</code></td>
+                  <td>Usuario actual con token válido<br/><small class="muted">Autenticación · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-14</code></td>
+                  <td>Usuario actual sin token devuelve 401<br/><small class="muted">Autenticación · Negativo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-15</code></td>
+                  <td>Usuario actual con token inválido devuelve 401<br/><small class="muted">Autenticación · Negativo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-16</code></td>
+                  <td>Perfil del usuario autenticado<br/><small class="muted">Perfil · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-17</code></td>
+                  <td>Usuario autenticado que no ha votado puede votar<br/><small class="muted">Votos · Positivo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>PASS; duración &gt; 5 s</td>
+                </tr>
+                <tr>
+                  <td><code>CP-18</code></td>
+                  <td>Votar sin autenticación devuelve 401<br/><small class="muted">Votos · Negativo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><code>CP-19</code></td>
+                  <td>Validaciones de registro (4 iteraciones: sin username, sin password, password corta, duplicado)<br/><small class="muted">Registro · Negativo</small></td>
+                  <td><span class="pill ok">PASS</span></td>
+                  <td>4/4 iteraciones PASS</td>
+                </tr>
+                <tr>
+                  <td><code>CP-20</code></td>
+                  <td>Registro con contraseña y confirmación distintas es rechazado<br/><small class="muted">Registro · Negativo</small></td>
+                  <td><span class="pill fail">FAIL</span></td>
+                  <td>DEF-01: la API acepta contraseñas distintas</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="sec" aria-labelledby="sec-defectos">
+          <div class="sec-head">
+            <h2 id="sec-defectos"><span class="num">04</span> Defectos encontrados</h2>
+          </div>
+          <article class="card defect sev-med">
+            <header class="defect-head">
+              <span class="id">DEF-01</span>
+              <h3>El registro de usuarios acepta contraseña y confirmación distintas</h3>
+              <span class="sev sev-med">Medio</span>
+            </header>
+            <div class="defect-body">
+              <h4 class="subttl">Descripción</h4>
+              <p>El endpoint de registro crea la cuenta aunque los campos <code>password</code> y <code>confirmPassword</code> no coincidan.
+              La validación de confirmación solo existe en el formulario web, por lo que cualquier cliente que consuma la API directamente
+              puede registrar usuarios sin esa verificación.</p>
+              <h4 class="subttl">Ubicación</h4>
+              <p>API → Registro · <code>POST /prod/users</code></p>
+              <h4 class="subttl">Comportamiento</h4>
+              <div class="compare">
+                <div class="cmp expected">
+                  <div class="h"><span aria-hidden="true">✅</span> Esperado</div>
+                  <p>HTTP 400 con un mensaje de validación que indique que las contraseñas no coinciden; el usuario no se crea.</p>
+                </div>
+                <div class="cmp found">
+                  <div class="h"><span aria-hidden="true">❌</span> Encontrado</div>
+                  <p>Primera ejecución: HTTP 201 <code>{}</code> y el usuario <code>qa_tmp_mismatch</code> quedó creado. Ejecuciones siguientes: HTTP 400 <code>User already exists</code>.</p>
+                </div>
+              </div>
+              <h4 class="subttl">Pasos para reproducir</h4>
+              <ol class="steps">
+                <li>Enviar <code>POST https://k51qryqov3.execute-api.ap-southeast-2.amazonaws.com/prod/users</code> con <code>Content-Type: application/json</code>.</li>
+                <li>Usar el cuerpo <code>{"username":"&lt;nuevo&gt;","firstName":"Qa","lastName":"Test","password":"Abcdef1!","confirmPassword":"Xbcdef1!"}</code>.</li>
+                <li>Observar que la respuesta es 201 y que se puede iniciar sesión con <code>Abcdef1!</code>.</li>
+              </ol>
+              <h4 class="subttl">Impacto</h4>
+              <p>Los clientes de la API (apps móviles, integraciones) pueden crear cuentas con una contraseña que el usuario no confirmó, lo que genera bloqueos de acceso y tickets de soporte.</p>
+              <h4 class="subttl">Análisis Técnico</h4>
+              <p>El backend solo valida campos obligatorios y la longitud mínima (Cognito <code>SignUpInput.Password</code> ≥ 6). Falta la regla <code>password == confirmPassword</code> en la capa de validación de la API antes de llamar a Cognito.</p>
+              <h4 class="subttl">Evidencias</h4>
+              <div class="evidence-body">
+                <img src="EV-CP-20-fallo.png" alt="Evidencia DEF-01" decoding="async" />
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="sec" aria-labelledby="sec-evidencias">
+          <div class="sec-head">
+            <h2 id="sec-evidencias"><span class="num">05</span> Evidencias de ejecución</h2>
+          </div>
+          <article class="card evidence">
+            <header class="evidence-head">
+              <span class="id">CP-01</span>
+              <h3>Reporte Karate: 22 iteraciones aprobadas y 1 fallida; detalle de CP-01 y CP-02</h3>
+            </header>
+            <div class="evidence-body">
+              <img src="EV-feature-resumen.png" alt="Evidencia CP-01" decoding="async" />
+            </div>
+          </article>
+          <article class="card evidence">
+            <header class="evidence-head">
+              <span class="id">CP-20</span>
+              <h3>Escenario fallido: la aserción de validación no se cumple</h3>
+            </header>
+            <div class="evidence-body">
+              <img src="EV-CP-20-fallo.png" alt="Evidencia CP-20" decoding="async" />
+            </div>
+          </article>
+          <article class="card evidence">
+            <header class="evidence-head">
+              <span class="id">CP-17</span>
+              <h3>Línea de tiempo de ejecución paralela (5 hilos); la barra roja es CP-20</h3>
+            </header>
+            <div class="evidence-body">
+              <img src="EV-timeline.png" alt="Evidencia CP-17" decoding="async" />
+            </div>
+          </article>
+          <p class="muted">Reporte técnico completo de Karate: <a href="karate-reports/karate-summary.html">karate-reports/karate-summary.html</a></p>
+        </section>
+
+        <section class="sec" aria-labelledby="sec-observaciones">
+          <div class="sec-head">
+            <h2 id="sec-observaciones"><span class="num">06</span> Observaciones, recomendaciones y conclusiones</h2>
+          </div>
+          <div class="callout info">
+            <h3><span aria-hidden="true">💡</span> Observaciones</h3>
+            <ul>
+              <li><b>Rendimiento:</b> <code>GET /makes/{id}</code> (~5,4 s) y <code>GET /models/{id}</code> (~4,6 s) son entre 4 y 5 veces más lentos que <code>/dashboard</code> (~1,1 s). Las respuestas incluyen descripciones y comentarios completos sin paginar.</li>
+              <li><b>Seguridad de contenido:</b> los comentarios públicos contienen cargas como <code>&lt;img src=x onerror="alert('XSS')"&gt;</code> almacenadas tal cual. La API no sanea entradas; la protección depende del frontend.</li>
+              <li><b>Paginación:</b> una página fuera de rango devuelve 200 con lista vacía (comportamiento tolerante y consistente en <code>/makes</code> y <code>/models</code>).</li>
+              <li><b>Mensajes de error:</b> el login inválido responde texto plano (<code>Invalid credentials</code>) mientras el resto de errores usan JSON <code>{"message": ...}</code>.</li>
+              <li>Los datos de la aplicación son públicos y compartidos; los casos usan aserciones de estructura y orden, no valores volátiles como votos o ranking.</li>
+            </ul>
+          </div>
+          <div class="callout warn">
+            <h3><span aria-hidden="true">⚠️</span> Recomendaciones</h3>
+            <ol>
+              <li><b>ALTA</b> · Validar en el backend que <code>password</code> y <code>confirmPassword</code> coincidan (DEF-01) y devolver 400 con un mensaje claro.</li>
+              <li><b>MEDIA</b> · Optimizar <code>/makes/{id}</code> y <code>/models/{id}</code> (paginar comentarios, caché) para bajar de 2 s.</li>
+              <li><b>MEDIA</b> · Sanear o escapar el texto de comentarios en el servidor para evitar XSS almacenado.</li>
+              <li><b>BAJA</b> · Unificar el formato de error del login a JSON.</li>
+              <li><b>BAJA</b> · Agregar un usuario de prueba dedicado y un entorno no productivo para cubrir el voto autenticado sin dejar datos permanentes.</li>
+            </ol>
+          </div>
+          <div class="callout concl">
+            <h3><span aria-hidden="true">✅</span> Conclusiones</h3>
+            <ul>
+              <li>La API de Buggy Cars Rating es <b>funcionalmente estable</b>: 19/20 casos aprobados (95 %), con todos los flujos de consulta, ranking, dashboard, login y perfil funcionando según lo esperado.</li>
+              <li>El <b>control de acceso es correcto</b>: todos los endpoints protegidos rechazan peticiones sin token o con token inválido (401).</li>
+              <li>El <b>único defecto funcional</b> está en las validaciones de registro (DEF-01); las otras 4 validaciones de registro sí funcionan.</li>
+              <li>El principal riesgo no funcional es el <b>tiempo de respuesta</b>: 7 de 20 casos superan 5 s (CP-01, CP-02, CP-03, CP-04, CP-05, CP-06, CP-17). La causa principal es la latencia de marcas y modelos; en CP-05 el tiempo se debe al arranque paralelo (su endpoint responde en ~1,2 s en secuencia).</li>
+              <li><b>Decisión:</b> se recomienda liberar con la observación DEF-01 registrada y priorizada; la suite queda automatizada como regresión y se ejecuta con <code>mvn test "-Dkarate.options=classpath:api/buggycars"</code>.</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <!-- ==================== FOOTER ==================== -->
+      <footer class="footer">
+        <svg class="brand-logo" viewBox="0 0 692.296 243.316" role="img" aria-label="SoftwareOne">
+          <use href="#logo-swo" />
+        </svg>
+        <div class="who">
+          Reporte generado por <span aria-hidden="true">✨</span> <strong>OneClickTest</strong><br />
+          *Puede contener errores
+        </div>
+        <div class="who">
+          SoftwareOne Colombia © 2026<br />
+          Todos los derechos reservados
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

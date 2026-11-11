@@ -1,0 +1,323 @@
+<testsuite failures="1" name="api/buggycars/buggy-cars.feature" skipped="0" tests="23" time="73.746156"><testcase classname="api.buggycars.buggy-cars" name="CP-01 Consultar Lamborghini con modelos de la pagina 1" time="10.901357"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'makes', lamborghiniId ......................................... passed
+And param modelsPage = 1 .................................................. passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response.name == 'Lamborghini' .................................. passed
+And match response.description == '#string' ............................... passed
+And match response.image == '#string' ..................................... passed
+And match response.models.totalPages == '#number' ......................... passed
+And match response.models.models == '#[_ &gt; 0]' ............................ passed
+And match each response.models.models == modeloSchema ..................... passed
+And match each response.models.models contains { make: 'Lamborghini', makeId: '#(lamborghiniId)' } . passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-02 Consultar los modelos de la pagina 2 de Lamborghini" time="6.937045"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'makes', lamborghiniId ......................................... passed
+And param modelsPage = 2 .................................................. passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response.models.models == '#[_ &gt; 0]' ............................ passed
+And match each response.models.models contains { make: 'Lamborghini' } .... passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-03 Pagina de modelos fuera de rango devuelve lista vacia" time="5.827829"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'makes', lamborghiniId ......................................... passed
+And param modelsPage = 99 ................................................. passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response.name == 'Lamborghini' .................................. passed
+And match response.models.models == [] .................................... passed
+And match response.models.totalPages == '#number' ......................... passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-04 Consultar otra marca (Pagani) solo devuelve sus modelos" time="6.651678"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'makes', paganiId .............................................. passed
+And param modelsPage = 1 .................................................. passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response.name == 'Pagani' ....................................... passed
+And match response.models.models == '#[_ &gt; 0]' ............................ passed
+And match each response.models.models contains { make: 'Pagani', makeId: '#(paganiId)' } . passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-05 Consultar una marca inexistente devuelve 404" time="5.762069"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'makes', 'nonexistent' ......................................... passed
+And param modelsPage = 1 .................................................. passed
+When method get ........................................................... passed
+Then status 404 ........................................................... passed
+And match response == { message: 'Not Found' } ............................ passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-06 Consultar el detalle del modelo Diablo sin autenticacion" time="6.467763"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'models', diabloId ............................................. passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response.name == 'Diablo' ....................................... passed
+And match response.description == '#string' ............................... passed
+And match response.votes == '#number' ..................................... passed
+And match response.engineVol == '#number' ................................. passed
+And match response.comments == '#[]' ...................................... passed
+And match each response.comments contains { user: '#string', datePosted: '#string', text: '#string' } . passed
+And match response.canVote == false ....................................... passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-07 Consultar un modelo inexistente devuelve 404" time="0.801397"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'models', lamborghiniId + '|noexiste' .......................... passed
+When method get ........................................................... passed
+Then status 404 ........................................................... passed
+And match response == { message: 'Not Found' } ............................ passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-08 Ranking general ordenado por posicion" time="2.924535"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'models' ....................................................... passed
+And param page = 1 ........................................................ passed
+And param orderBy = 'rank' ................................................ passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response.totalPages == '#number' ................................ passed
+And match response.models == '#[_ &gt; 0]' ................................... passed
+And match each response.models == modeloSchema ............................ passed
+* def ranks = $response.models[*].rank .................................... passed
+* def ordenados = karate.sort(ranks, function(x){ return x }) ............. passed
+And match ranks == ordenados .............................................. passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-09 Ranking general ordenado por marca" time="2.525562"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'models' ....................................................... passed
+And param page = 1 ........................................................ passed
+And param orderBy = 'make' ................................................ passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+* def marcas = $response.models[*].make ................................... passed
+* def ordenadas = karate.sort(marcas, function(x){ return x.toLowerCase() }) . passed
+And match marcas == ordenadas ............................................. passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-10 Dashboard muestra la marca y el modelo mas populares" time="1.294334"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'dashboard' .................................................... passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response.make == { id: '#string', name: '#string', image: '#string', votes: '#number' } . passed
+And match response.model == { id: '#string', make: '#string', name: '#string', image: '#string', votes: '#number' } . passed
+And match response.model.id == '#regex .+\\|.+' ........................... passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-11 Login con credenciales validas devuelve token Bearer" time="2.835538"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'oauth', 'token' ............................................... passed
+And form field grant_type = 'password' .................................... passed
+And form field username = buggyUser ....................................... passed
+And form field password = buggyPassword ................................... passed
+When method post .......................................................... passed
+Then status 200 ........................................................... passed
+And match response.access_token == '#string' .............................. passed
+And match response.refresh_token == '#string' ............................. passed
+And match response.token_type == 'Bearer' ................................. passed
+And match response.expires_in == 3600 ..................................... passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-12 Login con credenciales invalidas devuelve 401" time="1.820897"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'oauth', 'token' ............................................... passed
+And form field grant_type = 'password' .................................... passed
+And form field username = 'usuario_inexistente_qa' ........................ passed
+And form field password = 'Clave123!' ..................................... passed
+When method post .......................................................... passed
+Then status 401 ........................................................... passed
+And match response == 'Invalid credentials' ............................... passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-13 Consultar el usuario actual con token valido" time="2.196798"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+* def token = login() ..................................................... passed
+Given path 'users', 'current' ............................................. passed
+And header Authorization = 'Bearer ' + token .............................. passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response == { firstName: 'Qa', lastName: 'Test', isAdmin: false } . passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-14 Consultar el usuario actual sin token devuelve 401" time="0.75273"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'users', 'current' ............................................. passed
+When method get ........................................................... passed
+Then status 401 ........................................................... passed
+And match response == { message: 'Not authorized.' } ...................... passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-15 Consultar el usuario actual con token invalido devuelve 401" time="1.199157"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'users', 'current' ............................................. passed
+And header Authorization = 'Bearer token-invalido' ........................ passed
+When method get ........................................................... passed
+Then status 401 ........................................................... passed
+And match response == { message: 'Not authorized.' } ...................... passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-16 Consultar el perfil del usuario autenticado" time="1.83434"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+* def token = login() ..................................................... passed
+Given path 'users', 'profile' ............................................. passed
+And header Authorization = 'Bearer ' + token .............................. passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response contains { username: '#(buggyUser)', firstName: 'Qa', lastName: 'Test' } . passed
+And match response contains { gender: '#string', age: '#string', address: '#string', phone: '#string', hobby: '#string' } . passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-17 Usuario autenticado que no ha votado puede votar el modelo" time="6.612685"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+* def token = login() ..................................................... passed
+Given path 'models', diabloId ............................................. passed
+And header Authorization = 'Bearer ' + token .............................. passed
+When method get ........................................................... passed
+Then status 200 ........................................................... passed
+And match response.canVote == true ........................................ passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-18 Votar sin autenticacion devuelve 401" time="1.154829"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'models', diabloId, 'vote' ..................................... passed
+And request { comment: 'Voto sin autenticacion' } ......................... passed
+When method post .......................................................... passed
+Then status 401 ........................................................... passed
+And match response == { message: 'Not authorized.' } ...................... passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-19 Registro con datos invalidos es rechazado - sin username" time="0.707116"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'users' ........................................................ passed
+And request {} ............................................................ passed
+When method post .......................................................... passed
+Then status 400 ........................................................... passed
+And match response.message contains 'username is required' ................ passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-19 Registro con datos invalidos es rechazado - sin password" time="0.659308"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'users' ........................................................ passed
+And request { username: 'qa_tmp_nopass', firstName: 'Qa', lastName: 'Test' } . passed
+When method post .......................................................... passed
+Then status 400 ........................................................... passed
+And match response.message contains 'password is required' ................ passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-19 Registro con datos invalidos es rechazado - password corta" time="0.648341"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'users' ........................................................ passed
+And request { username: 'qa_tmp_short', firstName: 'Qa', lastName: 'Test', password: 'abc', confirmPassword: 'abc' } . passed
+When method post .......................................................... passed
+Then status 400 ........................................................... passed
+And match response.message contains 'minimum field size of 6' ............. passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-19 Registro con datos invalidos es rechazado - username duplicado" time="1.612919"><system-out>* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'users' ........................................................ passed
+And request { username: 'qa_tmp_x', firstName: 'Qa', lastName: 'Test', password: 'Abcdef1!', confirmPassword: 'Abcdef1!' } . passed
+When method post .......................................................... passed
+Then status 400 ........................................................... passed
+And match response.message contains 'User already exists' ................. passed
+</system-out></testcase>
+<testcase classname="api.buggycars.buggy-cars" name="CP-20 Registro con contrasena y confirmacion distintas es rechazado" time="1.617929"><failure message="match failed: NOT_CONTAINS&#10;  $ | actual contains expected (STRING:STRING)&#10;  'UsernameExistsException: User already exists'&#10;  'User already exists'&#10;&#10;classpath:api/buggycars/buggy-cars.feature:228">* url buggyApiUrl ......................................................... passed
+* def lamborghiniId = 'ckl2phsabijs71623vk0' .............................. passed
+* def paganiId = 'ckl2phsabijs7162403g' ................................... passed
+* def diabloId = 'ckl2phsabijs71623vk0|ckl2phsabijs71623vqg' .............. passed
+* def modeloSchema = ...................................................... passed
+* def login = ............................................................. passed
+Given path 'users' ........................................................ passed
+And request { username: 'qa_tmp_mismatch', firstName: 'Qa', lastName: 'Test', password: 'Abcdef1!', confirmPassword: 'Xbcdef1!' } . passed
+When method post .......................................................... passed
+Then status 400 ........................................................... passed
+And match response.message == '#string' ................................... passed
+And match response.message !contains 'User already exists' ................ failed
+
+Stack Trace:
+com.intuit.karate.KarateException: match failed: NOT_CONTAINS
+  $ | actual contains expected (STRING:STRING)
+  'UsernameExistsException: User already exists'
+  'User already exists'
+
+classpath:api/buggycars/buggy-cars.feature:228&#13;
+	at &lt;feature&gt;.: And match response.message !contains 'User already exists' (classpath:api/buggycars/buggy-cars.feature:228:228)&#13;
+
+</failure></testcase>
+</testsuite>
